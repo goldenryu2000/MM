@@ -724,9 +724,15 @@ body.focus-mode .poem-content {
   }
 
   /* Hide the scrollbar completely on mobile devices */
-  ::-webkit-scrollbar {
-    display: none;
-    width: 0px;
-    background: transparent;
+  body, html {
+    -ms-overflow-style: none !important;  /* IE and Edge */
+    scrollbar-width: none !important;  /* Firefox */
+  }
+  ::-webkit-scrollbar, body::-webkit-scrollbar, html::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+    -webkit-appearance: none !important;
   }
 }
