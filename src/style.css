@@ -1,0 +1,714 @@
+/* CSS Reset & Variables */
+:root {
+  --bg-color: #050506;
+  --bg-surface: rgba(20, 20, 22, 0.6);
+  --bg-surface-hover: rgba(30, 30, 35, 0.8);
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --accent: #c084fc;
+  --border: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  
+  --font-ui: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-poem: 'Lora', serif;
+  
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.8s ease;
+}
+
+/* Ambient Background */
+.ambient-bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 10, 30, 0.4) 0%, transparent 60%),
+              radial-gradient(circle at 80% 20%, rgba(10, 20, 40, 0.3) 0%, transparent 50%);
+  z-index: -1;
+  animation: slowDrift 30s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes slowDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-5%, 5%) scale(1.1); }
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Layout */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: opacity 0.5s ease;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #fff, #a1a1aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--text-primary);
+  transform: translateX(-4px);
+}
+
+/* Buttons */
+.icon-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+.icon-btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin: 6rem 0;
+}
+
+.hero h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Vibes / Themes */
+body.theme-nature {
+  --bg-color: #0d140f;
+  --accent: #86efac;
+}
+body.theme-nature .ambient-bg {
+  background: radial-gradient(circle at 50% 50%, rgba(10, 30, 20, 0.4) 0%, transparent 60%),
+              radial-gradient(circle at 80% 20%, rgba(20, 40, 10, 0.3) 0%, transparent 50%);
+}
+
+body.theme-melancholy {
+  --bg-color: #0a0f18;
+  --accent: #93c5fd;
+}
+body.theme-melancholy .ambient-bg {
+  background: radial-gradient(circle at 50% 50%, rgba(10, 20, 40, 0.4) 0%, transparent 60%),
+              radial-gradient(circle at 80% 20%, rgba(5, 10, 30, 0.3) 0%, transparent 50%);
+}
+
+body.theme-magic {
+  --bg-color: #150c1a;
+  --accent: #c084fc;
+}
+body.theme-magic .ambient-bg {
+  background: radial-gradient(circle at 50% 50%, rgba(30, 10, 40, 0.4) 0%, transparent 60%),
+              radial-gradient(circle at 80% 20%, rgba(40, 20, 50, 0.3) 0%, transparent 50%);
+}
+
+body.theme-nostalgia {
+  --bg-color: #18100c;
+  --accent: #fcd34d;
+}
+body.theme-nostalgia .ambient-bg {
+  background: radial-gradient(circle at 50% 50%, rgba(40, 20, 10, 0.4) 0%, transparent 60%),
+              radial-gradient(circle at 80% 20%, rgba(30, 10, 5, 0.3) 0%, transparent 50%);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+}
+
+.filter-btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: var(--text-primary);
+  color: var(--bg-color);
+  border-color: var(--text-primary);
+}
+
+.filter-btn svg {
+  transition: stroke 0.3s ease, transform 0.3s ease;
+}
+.filter-btn.active svg {
+  stroke: var(--bg-color);
+}
+
+/* SVG Animations per section */
+@keyframes pulseAll {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes swayLeaf {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes rainFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes glimmerStar {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(10deg); }
+}
+
+@keyframes flipTime {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+/* Apply animations on hover and active */
+.filter-btn[data-category="all"]:hover svg,
+.filter-btn[data-category="all"].active svg {
+  animation: pulseAll 2s infinite ease-in-out;
+}
+
+.filter-btn[data-category="nature"]:hover svg,
+.filter-btn[data-category="nature"].active svg {
+  animation: swayLeaf 2s infinite ease-in-out;
+  transform-origin: bottom center;
+}
+
+.filter-btn[data-category="melancholy"]:hover svg,
+.filter-btn[data-category="melancholy"].active svg {
+  animation: rainFloat 2s infinite ease-in-out;
+}
+
+.filter-btn[data-category="magic"]:hover svg,
+.filter-btn[data-category="magic"].active svg {
+  animation: glimmerStar 2.5s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.filter-btn[data-category="nostalgia"]:hover svg,
+.filter-btn[data-category="nostalgia"].active svg {
+  /* Using a flip on hover, continuous slow rotate for active */
+  animation: flipTime 3s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* Poem Grid */
+.poems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Cards with Glassmorphism */
+.poem-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.poem-card:hover {
+  transform: translateY(-5px);
+  background: var(--bg-surface-hover);
+  border-color: var(--border-hover);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.poem-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.poem-card p {
+  color: var(--text-secondary);
+  font-family: var(--font-poem);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: auto;
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: var(--transition);
+}
+
+.poem-card:hover .read-more {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Poem Page */
+.poem-article {
+  max-width: 680px;
+  margin: 2rem auto 6rem;
+}
+
+.poem-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  justify-content: center;
+}
+
+.poem-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.poem-content {
+  font-family: var(--font-poem);
+  font-size: 1.25rem;
+  line-height: 2;
+  color: #e4e4e7;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+.poem-content p {
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealText 0.8s forwards ease-out;
+}
+
+/* Staggered text reveal animation */
+@keyframes revealText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus Mode */
+body.focus-mode .header {
+  opacity: 0.1;
+}
+body.focus-mode .header:hover {
+  opacity: 1;
+}
+body.focus-mode .ambient-bg {
+  opacity: 0.2;
+}
+body.focus-mode .poem-meta {
+  opacity: 0.3;
+}
+body.focus-mode .poem-content {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+/* Global Animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+  .poem-title {
+    font-size: 2.2rem;
+  }
+  .poem-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  .poems-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ambient Particles */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Nature: Falling Leaves */
+.particle-leaf {
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent);
+  border-radius: 0 12px 0 12px;
+  opacity: 0.3;
+  animation: fallLeaf linear infinite;
+}
+@keyframes fallLeaf {
+  0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+}
+
+/* Melancholy: Rain */
+.particle-rain {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(transparent, var(--accent));
+  opacity: 0.4;
+  animation: fallRain linear infinite;
+}
+@keyframes fallRain {
+  0% { transform: translateY(-10vh); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Magic: Stars */
+.particle-star {
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 12px 2px var(--accent);
+  animation: twinkleStar ease-in-out infinite alternate;
+}
+@keyframes twinkleStar {
+  0% { transform: scale(0.5); opacity: 0.1; }
+  100% { transform: scale(1.5); opacity: 0.8; }
+}
+
+/* Nostalgia: Dust */
+.particle-dust {
+  width: 4px;
+  height: 4px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: driftDust linear infinite;
+}
+@keyframes driftDust {
+  0% { transform: translateY(110vh) translateX(0); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-10vh) translateX(-100px); opacity: 0; }
+}
+
+/* Unique Poems Particles */
+
+/* moon-river: Static moon & stars */
+.particle-moon {
+  width: 100px;
+  height: 100px;
+  background-color: #fefcd7;
+  border-radius: 50%;
+  box-shadow: 0 0 50px 10px rgba(254, 252, 215, 0.4);
+  top: 10%;
+  right: 15%;
+  opacity: 0.9;
+  position: fixed;
+  animation: none;
+}
+
+/* woeful-waters: Ripples */
+.particle-ripple {
+  width: 150px;
+  height: 20px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: rippleWater linear infinite;
+  transform-origin: center;
+}
+@keyframes rippleWater {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* gloomy-skies: Clouds and Lightning */
+.particle-cloud {
+  width: 200px;
+  height: 60px;
+  background: rgba(30, 40, 50, 0.8);
+  border-radius: 50px;
+  filter: blur(10px);
+  animation: driftCloud linear infinite;
+}
+@keyframes driftCloud {
+  0% { transform: translateX(-200px); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateX(110vw); opacity: 0; }
+}
+.particle-lightning {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  animation: flashLightning 10s infinite;
+  z-index: -1;
+}
+@keyframes flashLightning {
+  0%, 95%, 100% { opacity: 0; }
+  96% { opacity: 0.1; }
+  97% { opacity: 0; }
+  98% { opacity: 0.2; }
+}
+
+/* escape: Fireflies */
+.particle-firefly {
+  width: 6px;
+  height: 6px;
+  background: #a3e635;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px #a3e635;
+  animation: dartFirefly ease-in-out infinite alternate;
+}
+@keyframes dartFirefly {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  100% { transform: translate(50px, -50px) scale(1.5); opacity: 0.9; }
+}
+
+/* amy: Music Notes */
+.particle-music::before {
+  content: '♪';
+  font-size: 20px;
+  color: var(--accent);
+}
+.particle-music {
+  animation: floatMusic linear infinite;
+}
+@keyframes floatMusic {
+  0% { transform: translateY(110vh) rotate(-20deg); opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.5; }
+  100% { transform: translateY(-10vh) rotate(20deg); opacity: 0; }
+}
+
+/* pains-of-growing-up: Shattered Glass / Fragments */
+.particle-glass {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid rgba(255, 255, 255, 0.2);
+  animation: spinGlass linear infinite;
+}
+@keyframes spinGlass {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.3; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* catching-up-with-time: Hourglass falling */
+.particle-hourglass::before {
+  content: '⏳';
+  font-size: 24px;
+  opacity: 0.4;
+}
+.particle-hourglass {
+  animation: fallHourglass linear infinite;
+}
+@keyframes fallHourglass {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.4; }
+  80% { opacity: 0.4; }
+  100% { transform: translateY(110vh) rotate(180deg); opacity: 0; }
+}
+
+/* te-to-my-ti-my-chatto: Embers */
+.particle-ember {
+  width: 8px;
+  height: 8px;
+  background: #fb923c;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 3px #ea580c;
+  animation: riseEmber linear infinite;
+}
+@keyframes riseEmber {
+  0% { transform: translateY(110vh) translateX(0) scale(1); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) translateX(30px) scale(0.2); opacity: 0; }
+}
+
+/* life-productions-presents-tomorrow: Spotlight */
+.particle-spotlight {
+  position: fixed;
+  top: -50vh;
+  left: 0;
+  width: 200vw;
+  height: 200vh;
+  background: radial-gradient(circle at 50% 10%, rgba(255,255,255,0.05) 0%, transparent 40%);
+  animation: panSpotlight 15s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+@keyframes panSpotlight {
+  0% { transform: translateX(-20vw); }
+  100% { transform: translateX(20vw); }
+}
+
+/* up-in-the-mountains: Fog Layers */
+.particle-fog {
+  width: 300px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: driftFog linear infinite;
+}
+@keyframes driftFog {
+  0% { transform: translateX(-300px) translateY(0); opacity: 0; }
+  20% { opacity: 0.2; }
+  80% { opacity: 0.2; }
+  100% { transform: translateX(110vw) translateY(-50px); opacity: 0; }
+}
+
+/* december-2018: Brick tones drifting */
+.particle-brick {
+  width: 80px;
+  height: 40px;
+  background: rgba(153, 27, 27, 0.1);
+  border-radius: 2px;
+  filter: blur(5px);
+  animation: driftBrick linear infinite;
+}
+@keyframes driftBrick {
+  0% { transform: translateX(110vw) scale(1); opacity: 0; }
+  20% { opacity: 0.2; }
+  80% { opacity: 0.2; }
+  100% { transform: translateX(-110vw) scale(1.2); opacity: 0; }
+}
