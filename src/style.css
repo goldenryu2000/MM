@@ -712,3 +712,21 @@ body.focus-mode .poem-content {
   80% { opacity: 0.2; }
   100% { transform: translateX(-110vw) scale(1.2); opacity: 0; }
 }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  /* Dim the moon so text is readable */
+  .particle-moon {
+    opacity: 0.2 !important;
+    transform: scale(0.6);
+    top: 5%;
+    right: 5%;
+  }
+
+  /* Hide the scrollbar completely on mobile devices */
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    background: transparent;
+  }
+}
