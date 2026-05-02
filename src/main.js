@@ -1,5 +1,5 @@
 // Main logic for Melancholic Muser
-
+import poemsData from '../poems.json';
 document.addEventListener('DOMContentLoaded', () => {
   // Set current year in footer
   const yearEl = document.getElementById('year');
@@ -16,14 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchPoems() {
-  try {
-    const res = await fetch('./poems.json');
-    if (!res.ok) throw new Error('Failed to fetch poems');
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  // Using static import for poemsData so it's perfectly bundled by Vite
+  return poemsData;
 }
 
 // Calculate reading time (avg 200 words per min)
