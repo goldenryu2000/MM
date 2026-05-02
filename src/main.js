@@ -29,30 +29,17 @@ function getReadingTime(text) {
 
 // Helper to format the scraped JSON blob text into poetic stanzas
 function formatPoemText(text) {
-  // The scraped text often lacks line breaks. 
-  // Let's creatively add line breaks based on punctuation and capital letters to make it feel like a poem.
-  let formatted = text.replace(/([a-z])([A-Z])/g, '$1\n$2'); // Split camelCase-like squished words
-
-  // Split on some natural pauses
-  formatted = formatted.replace(/,\s*/g, ',\n');
-  formatted = formatted.replace(/\.\s*/g, '.\n\n');
-
-  // If still mostly one line, just split it by chunks
-  const lines = formatted.split('\n').filter(l => l.trim() !== '');
-
-  // Group into stanzas of ~4 lines
-  let stanzas = [];
-  let currentStanza = [];
-
-  lines.forEach((line, index) => {
-    currentStanza.push(line);
-    if (currentStanza.length === 4 || index === lines.length - 1) {
-      stanzas.push(currentStanza.join('\n'));
-      currentStanza = [];
+  // Split by actual newlines preserved in the JSON
+  const lines = text.split('\n');
+  
+  return lines.map((line, i) => {
+    // If it's an empty line, render a stanza break spacer
+    if (line.trim() === '') {
+      return `<div class="stanza-break"></div>`;
     }
-  });
-
-  return stanzas.map((stanza, i) => `<p style="animation-delay: ${i * 0.2}s">${stanza}</p>`).join('');
+    // Otherwise render the line with a smooth cascading delay
+    return `<p style="animation-delay: ${i * 0.08}s">${line}</p>`;
+  }).join('');
 }
 
 function triggerHaptic() {
