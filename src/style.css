@@ -741,4 +741,12 @@ body.focus-mode .poem-content {
     background: transparent !important;
     -webkit-appearance: none !important;
   }
+
+  /* Prevent header overlap by hiding the word 'Discover' and shrinking logo */
+  .nav-controls .btn-text {
+    display: none;
+  }
+  .logo h1 {
+    font-size: 1.2rem;
+  }
 }
